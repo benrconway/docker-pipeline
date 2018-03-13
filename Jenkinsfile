@@ -1,70 +1,28 @@
-#!/usr/bin/env groovy
+node {
 
-pipeline {
-
-  //
-  // "def app"  causes issue with configuration.
-    agent {
-      dockerfile true
+    def app
+    environment{
+      CI='true'
+      // DOCKER = tool("testDocker")
     }
-    environment {
-      CI = 'true'
+
+    stage('Clone repository') {
+        /* Let's make sure we have the repository cloned to our workspace */
+
+        checkout scm
     }
-    stages {
-        stage('Build') {
-            steps {
-              docker('testDocker'){
-                sh 'docker build -t api .'
-                }
 
-// Things not yet working for me
-                 // docker.build("api")
-              // nodejs('testJS') {
-              //   sh "npm install"
-              //   sh "npm start &"
-              // }
+    stage('Build image') {
+        /* This builds the actual image; synonymous to
+         * docker build on the command line */
+        app = docker.build("api")
+    }
 
-            }
+    stage('Test image') {
+        /* Ideally, we would run a test framework against our image.
+         * For this example, we're using a Volkswagen-type approach ;-) */
+        app.inside {
+            sh 'npm start'
         }
-        stage('Test') {
-            steps {
-                echo 'Testing.. and stuff'
-
-                // app.run()
-                // nodejs('testJS') {
-                //     sh "npm test"
-                // }
-
-
-            }
-        }
-        // stage('Deploy') {
-        //     steps {
-        //         echo 'Deploying....'
-        //     }
-        // }
     }
 }
-
-// how does this change things
-// pipeline {
-//     agent any
-//     stages {
-//         stage('Build') {
-//             steps {
-//                 echo "building..."
-//             }
-//         }
-//         stage('Test'){
-//             steps {
-//                 sh ''
-//                 junit 'reports/**/*.xml'
-//             }
-//         }
-//         stage('Deploy') {
-//             steps {
-//                 sh 'make publish'
-//             }
-//         }
-//     }
-// }
