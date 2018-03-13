@@ -1,8 +1,12 @@
 #!/usr/bin/env groovy
 
 pipeline {
-  def app
-    
+
+  //
+  // "def app"  causes issue with configuration.
+    agent {
+      dockerfile true
+    }
     environment {
       CI = 'true'
     }
@@ -10,8 +14,11 @@ pipeline {
         stage('Build') {
             steps {
               docker('testDocker'){
-              app = docker.build("api")
+                sh 'docker build -t api'
                 }
+
+// Things not yet working for me
+                 // docker.build("api")
               // nodejs('testJS') {
               //   sh "npm install"
               //   sh "npm start &"
@@ -23,7 +30,7 @@ pipeline {
             steps {
                 echo 'Testing.. and stuff'
 
-                app.run()
+                // app.run()
                 // nodejs('testJS') {
                 //     sh "npm test"
                 // }
