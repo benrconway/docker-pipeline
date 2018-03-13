@@ -1,3 +1,4 @@
+#!/usr/bin/env groovy
 node {
 
     def app
@@ -18,7 +19,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = DOCKER.build("api")
+        app = {DOCKER}.build("api")
     }
 
     stage('Test image') {
