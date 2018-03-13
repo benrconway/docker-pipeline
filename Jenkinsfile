@@ -14,7 +14,7 @@ pipeline {
         stage('Build') {
             steps {
               docker('testDocker'){
-                sh 'docker build -t api'
+                sh 'docker build -t api .'
                 }
 
 // Things not yet working for me
