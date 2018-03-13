@@ -1,12 +1,13 @@
-#!/usr/bin/env groovy
+#!/usr/bin/env
 node {
-    def app
+
     agent {
         docker {
               image 'node:6-alpine'
               args '-p 3000:3000'
           }
       }
+    def app
     environment{
       CI='true'
       // DOCKER = tool("testDocker")
