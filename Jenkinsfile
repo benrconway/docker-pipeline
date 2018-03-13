@@ -1,8 +1,7 @@
 node {
 
     def app
-    environment{
-      CI='true'
+
       // DOCKER = tool("testDocker")
     }
 
