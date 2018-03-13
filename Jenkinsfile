@@ -2,7 +2,7 @@
 
 pipeline {
   def app
-    }
+    
     environment {
       CI = 'true'
     }
