@@ -1,12 +1,10 @@
 #!/usr/bin/env groovy
 node {
-
     def app
-
 
     environment{
       CI='true'
-      DOCKER = tool(testDocker)
+      DOCKER = tool("testDocker")
     }
 
     stage('Clone repository') {
@@ -19,7 +17,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = {DOCKER}.build()
+        app = DOCKER.build("api")
     }
 
     stage('Test image') {
