@@ -1,37 +1,67 @@
-#!/usr/bin/env
-node {
+#!/usr/bin/env groovy
 
-    agent {
-        docker {
-              image 'node:6-alpine'
-              args '-p 3000:3000'
-          }
-      }
-    def app
-    environment{
-      CI='true'
-      // DOCKER = tool("testDocker")
-    }
-
-    stage('Clone repository') {
-        /* Let's make sure we have the repository cloned to our workspace */
-
-        checkout scm
-    }
-
-    stage('Build image') {
-        /* This builds the actual image; synonymous to
-         * docker build on the command line */
-         // sh "${DOCKER} build -t api ."
-        app = docker.build("api")
-    }
-
-    stage('Test image') {
-        /* Ideally, we would run a test framework against our image.
-         * For this example, we're using a Volkswagen-type approach ;-) */
-         // sh "${DOCKER} run api"
-        app.inside {
-            sh 'npm start'
+pipeline {
+  def app
+  agent {
+    docker {
+          image 'node:6-alpine'
+          args '-p 3000:3000'
         }
     }
+    environment {
+      CI = 'true'
+    }
+    stages {
+        stage('Build') {
+            steps {
+              docker.build("api")
+
+              // nodejs('testJS') {
+              //   sh "npm install"
+              //   sh "npm start &"
+              // }
+
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing.. and stuff'
+
+                app.run()
+                // nodejs('testJS') {
+                //     sh "npm test"
+                // }
+
+
+            }
+        }
+        // stage('Deploy') {
+        //     steps {
+        //         echo 'Deploying....'
+        //     }
+        // }
+    }
 }
+
+// how does this change things
+// pipeline {
+//     agent any
+//     stages {
+//         stage('Build') {
+//             steps {
+//                 echo "building..."
+//             }
+//         }
+//         stage('Test'){
+//             steps {
+//                 sh ''
+//                 junit 'reports/**/*.xml'
+//             }
+//         }
+//         stage('Deploy') {
+//             steps {
+//                 sh 'make publish'
+//             }
+//         }
+//     }
+// }
