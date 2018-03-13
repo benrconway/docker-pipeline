@@ -2,11 +2,6 @@
 
 pipeline {
   def app
-  agent {
-    docker {
-          image 'node:6-alpine'
-          args '-p 3000:3000'
-        }
     }
     environment {
       CI = 'true'
@@ -14,8 +9,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-              docker.build("api")
-
+              docker('testDocker'){
+              app = docker.build("api")
+                }
               // nodejs('testJS') {
               //   sh "npm install"
               //   sh "npm start &"
