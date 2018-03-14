@@ -22,6 +22,7 @@ node {
          * For this example, we're using a Volkswagen-type approach ;-) */
 
          sh "docker run -p 3000:3000 api"
+         sh 'docker container logs api'
          //
          // docker.run("api")
          // docker.logs("api")
