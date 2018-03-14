@@ -14,7 +14,7 @@ pipeline {
               // docker('testDocker'){
               //   sh 'docker build -t api .'
               //   }
-              sh "sh ${DOCKER}/Contents/Resources/bin/docker build -t api ."
+              sh "${DOCKER}/Contents/Resources/bin/docker build -t api ."
 
             }
         }
