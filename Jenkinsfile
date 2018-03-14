@@ -23,6 +23,7 @@ node {
          sh 'docker build -t api .'
 
          sh "docker run -p 3000:3000 api"
+         sh "docker prune -a"
          sh "docker container ls"
          sh 'docker image ls'
          //
