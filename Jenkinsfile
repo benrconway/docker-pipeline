@@ -21,9 +21,11 @@ node {
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Volkswagen-type approach ;-) */
 
-         docker.run("api")
-         docker.logs("api")
-
+         sh "docker run -p 3000:3000 api"
+         //
+         // docker.run("api")
+         // docker.logs("api")
+         //
 
         // app.run()
         // $echo '' < app.container("logs")
