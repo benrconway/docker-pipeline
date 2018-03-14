@@ -9,7 +9,8 @@
   "scripts": {
     "build": "npm install",
     "test": "mocha test",
-    "start": "node server.js & npm test"
+    "start": "node server.js &" 
+
   },
   "author": "",
   "license": "ISC",
