@@ -23,7 +23,7 @@ node {
          sh 'docker build -t api .'
 
          sh "docker run -p 3000:3000 api"
-         sh "docker exec -d api 'npm test'"
+         sh "docker container ls"
          sh 'docker image ls'
          //
          // docker.run("api")
