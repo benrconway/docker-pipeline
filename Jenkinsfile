@@ -12,7 +12,9 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
         // app = docker.build("api")
-        docker.build("api")
+        sh 'docker build -t api .'
+
+        // docker.build("api")
     }
 
     stage('Test image') {
@@ -21,7 +23,7 @@ node {
 
          docker.run("api")
          docker.logs("api")
-         
+
 
         // app.run()
         // $echo '' < app.container("logs")
