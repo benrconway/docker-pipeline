@@ -21,9 +21,9 @@ node {
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Volkswagen-type approach ;-) */
         sh '$echo app.run()'
-        // trying to see what it written instead of just receiving success notification
+        // trying to see what it written instead of just receiving success  notification
         // app.inside{
         //   sh 'npm test'
-        }
+        //}
     }
 }
