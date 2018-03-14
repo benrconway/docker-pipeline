@@ -20,9 +20,10 @@ node {
     stage('Test image') {
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Volkswagen-type approach ;-) */
-        app.run(-p 3000:3000)
-        app.inside{
-          sh 'npm test'
+        sh '$echo app.run()'
+        // trying to see what it written instead of just receiving success notification
+        // app.inside{
+        //   sh 'npm test'
         }
     }
 }
