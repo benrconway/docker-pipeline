@@ -1,7 +1,9 @@
 node {
 
     def app
-
+    environment{
+      DOCKER = tool('testDocker')
+    }
     stage('Clone repository') {
         /* Let's make sure we have the repository cloned to our workspace */
 
@@ -12,9 +14,12 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
         // app = docker.build("api")
-        sh 'docker build -t api .'
 
-        // docker.build("api")
+        //This one works in my docker container jenkins.
+        // sh 'docker build -t api .'
+
+        //Experiment to see if I can get docker on my personal machine working
+        sh 'sh ${DOCKER}/Contents/Resources/bin/docker build -t api . '
     }
 
     stage('Test image') {
