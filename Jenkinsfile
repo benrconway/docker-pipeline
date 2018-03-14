@@ -19,8 +19,8 @@ node {
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Volkswagen-type approach ;-) */
 
-         docker.image("api:latest").withRun("-p 3000:3000") {
-           sh 'npm start'
+         docker.run("api")
+         docker.logs("api")
          }
 
         // app.run()
