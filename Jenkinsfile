@@ -21,7 +21,7 @@ node {
 
          docker.run("api")
          docker.logs("api")
-         }
+         
 
         // app.run()
         // $echo '' < app.container("logs")
