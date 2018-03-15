@@ -18,6 +18,7 @@ node {
         //This one works in my docker container jenkins.
         // sh 'docker build -t api .'
         sh "${DOCKER}/Contents/Resources/bin/docker build -t api ."
+        
         //Experiment to see if I can get docker on my personal machine working
         // sh "sh ${DOCKER}/Contents/Resources/bin/docker build -t api . "
     }
