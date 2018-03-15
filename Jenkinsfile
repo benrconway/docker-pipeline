@@ -19,6 +19,7 @@ node {
         // sh 'docker build -t api .'
         sh "/Applications/Docker.app/Contents/Resources/bin/docker build -t api ."
 
+
         //Experiment to see if I can get docker on my personal machine working
         // sh "sh ${DOCKER}/Contents/Resources/bin/docker build -t api . "
     }
@@ -27,8 +28,9 @@ node {
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Volkswagen-type approach ;-) */
          // sh 'docker build -t api .'
-
-         sh "docker run -p 3000:3000 api"
+         //This should work.
+         sh "/Applications/Docker.app/Contents/Resources/bin/docker run -p 3000:3000 api"
+         // sh "docker run -p 3000:3000 api"
 
 
          //
